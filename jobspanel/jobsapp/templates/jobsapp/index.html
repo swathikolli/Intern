@@ -1,0 +1,105 @@
+
+{% extends "jobsapp/layout.html" %}
+{% load static %}
+{% block head %}
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<style>
+  .main{
+          padding:10px;
+          display:block;
+          width:900px;
+          height:170px;
+          margin-left:250px;
+          margin-top:10px;
+          border:2px outset lightblue;
+         alignment:center;
+          background-color:white;
+          border-radius:20px;
+          
+   }
+   .p1{
+          width:20%;
+          float:left;
+          
+   }
+   .p2{
+         width:40%;
+         margin-top:5px;
+          float:left;
+   }
+   .p3{
+   margin-top:50px;
+           width:40%;
+          float:right;
+   }
+   h4{
+          color: hsl(180, 29%, 50%);
+   }
+   h5{
+          color:hsl(180, 8%, 52%);
+   }
+   button{
+         color: hsl(180, 29%, 50%);
+         border-radius:5px;
+         margin-top:10px;
+   }
+   button:hover{
+                background-color: hsl(180, 29%, 50%);
+                color:white;
+   }
+   .dot{
+          height:5px;
+          width:5px;
+          background-color:#bbb;
+          border-radius:50px;
+          display:inline-block;
+   }
+   .new{
+
+          background-color:hsl(180, 29%, 50%);
+          border-radius:10px;
+          color:white;
+
+   }
+   .fea{
+
+          background-color:hsl(180, 14%, 20%);
+          border-radius:10px;
+          width:90px;
+          height:25px;
+          color:white;
+
+   }
+   </style>
+{% endblock %}
+{% block body %}
+{% for l in list %}
+<div class="col-md-12 col-sm-3">
+<div class="main">
+<div class="p1">
+           <img src="/static/jobsapp/{{ l.logo }}" alt="image"  />
+</div>
+<div class="p2">
+            {% if l.new == True %}
+               <button class="new">NEW!</button>
+            {%  endif %}
+             {% if l.featured == True %}
+               <button class="fea">FEATURED</button>
+            {%  endif %}
+             <h4>{{ l.company }}</h4>
+             <h3>{{ l.position }}</h3>
+             <h5>{{ l.postedAt }}  &nbsp;&nbsp; {{ l.contract }}&nbsp;&nbsp; {{l.location }}</h4>
+</div>
+<div class="p3">
+           <button>{{ l.role }}</button>&nbsp;&nbsp;
+           <button>{{ l.level }}</button>&nbsp;&nbsp;
+           {% for i in l.languages %}
+           <button>{{ i }}</button>&nbsp;&nbsp;
+           {% endfor %}
+</div>
+</div>
+</div>
+{% endfor %}
+{% endblock %}
+      

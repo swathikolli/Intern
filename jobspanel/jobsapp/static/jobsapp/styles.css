@@ -1,0 +1,8 @@
+{% load static %}
+body{
+               background-image:url({% static "jobsapp/bg-header-desktop.svg" %});
+               background-color:#cccccc;
+                padding: 10px;
+                background-repeat:no-repeat;
+                background-cover:fixed;
+              }

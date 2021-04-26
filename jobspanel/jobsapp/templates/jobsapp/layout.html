@@ -1,0 +1,27 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Jobs{% endblock %}</title>
+        <link href="{% static "jobsapp/styles.css" %}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <style>
+          body{
+               background-image:url({% static "jobsapp/bg-header-desktop.svg"" %});
+               background-color:#cccccc;
+               padding:70px;
+               background-repeat:no-repeat;
+               background-size:cover;
+                
+                
+              }
+              
+       </style>
+       {% block head %}
+       {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
