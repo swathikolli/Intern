@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-a7ik*ii6eu3ebv((l-o)3h+oq_(f37hb&k8f7#b4+%o@1-i5!g
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['jobspanel.pythonanywhere.com']
 
 
 # Application definition
