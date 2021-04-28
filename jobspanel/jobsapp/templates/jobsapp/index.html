@@ -1,29 +1,38 @@
 
-
 {% extends "jobsapp/layout.html" %}
 {% load static %}
 {% block head %}
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
 <style>
-
   .main{
           padding:10px;
           display:block;
+          width:900px;
+          height:170px;
+          margin-left:250px;
+          margin-top:10px;
           border:2px outset lightblue;
-          alignment:center;
+         alignment:center;
           background-color:white;
           border-radius:20px;
-
-
+          
    }
-
-
+   .p1{
+          width:20%;
+          float:left;
+          
+   }
+   .p2{
+         width:40%;
+         margin-top:5px;
+          float:left;
+   }
+   .p3{
+   margin-top:50px;
+           width:40%;
+          float:right;
+   }
    h4{
           color: hsl(180, 29%, 50%);
    }
@@ -62,55 +71,74 @@
           color:white;
 
    }
-
-
-  .main {
-       width:500px;
-       height:400px;
-      margin-left:2px;
-          margin-top:5px;
-  }
-
-@media only screen and (max-width: 400px) {
-  .main { width:900px;
-       height:450px;
-      margin-left:2px;
-          margin-top:8px;}
-}
-
-@media only screen and (min-width: 1200px) {
-  .main { width:1100px;
-       height:170px;
-      margin-left:50px;
-          margin-top:20px;}
-}
-
-
-@media only screen and (min-width: 700px) {
-   .p1{
-          width:20%;
-          float:left;
-
+   
+   .clear{
+            color: "black";
+         border-radius:5px;
+         margin-top:10px;
+         float:"right";
    }
-   .p2{
-         width:40%;
-         margin-top:5px;
-          float:left;
-   }
-   .p3{
-   margin-top:50px;
-           width:40%;
-          float:right;
-   }
-
-}
+   .clear:hover{
+                background-color: hsl(180, 29%, 50%);
+                color:white;
+    }
    </style>
+   <script>
+      var c=0;
+             function searching(){
+             if(c==0){
+                    var div = document.createElement("div");
+                    var button = document.createElement("button");
+                  //div properties
+                   div.style.width = "900px";
+                   div.style.height = "100px";
+                   div.style.background = "white";
+                   div.style.color = "black";
+                   div.style.marginTop = "1px";
+                   div.style.marginLeft="270px";
+                   div.style.borderRadius ="15px";
+                   div.style.alignment="center";
+                   div.style.padding = "35px";
+                document.getElementById("search").appendChild(div);
+                div.appendChild(button);
+                //button properties clear
+                button.style.width ="60px";
+                button.style.float="right";
+                button.innerHTML="clear";
+                button.style.background ="white";
+                button.style.color="black";
+
+                //creating button to add search bar
+                var b = document.createElement("button");
+                div.appendChild(b); 
+                b.style.width ="80px";
+                b.style.float="left";
+                b.innerHTML=document.getElementById("role").textContent;
+                b.style.background ="white";
+                b.style.color="black";
+                c=1;
+             }
+             else{
+                
+                 var b1 = document.createElement("button");
+                div.appendChild(b1); 
+                b1.style.width ="80px";
+                b1.style.float="left";
+                b1.innerHTML=document.getElementById("role").textContent;
+                b1.style.background ="white";
+                b1.style.color="black";
+
+                }
+               
+             }
+   </script>
 {% endblock %}
 {% block body %}
+<div id="search">
+</div>
 {% for l in list %}
-<div class="container">
-    <div class="row">
-<div class="col-10 main">
+<div class="col-md-12 col-sm-3">
+<div class="main">
 <div class="p1">
            <img src="/static/jobsapp/{{ l.logo }}" alt="image"  />
 </div>
@@ -126,15 +154,17 @@
              <h5>{{ l.postedAt }}  &nbsp;&nbsp; {{ l.contract }}&nbsp;&nbsp; {{l.location }}</h4>
 </div>
 <div class="p3">
-           <button>{{ l.role }}</button>&nbsp;&nbsp;
+           <button onClick="searching()" id="role" value="{{ l.role }}">{{ l.role }}</button>&nbsp;&nbsp;
            <button>{{ l.level }}</button>&nbsp;&nbsp;
            {% for i in l.languages %}
            <button>{{ i }}</button>&nbsp;&nbsp;
            {% endfor %}
-</div>
-</div>
+           {% for j in l.tools %}
+           <button>{{ j }}</button>&nbsp;&nbsp;
+           {% endfor %}
 </div>
 </div>
 </div>
 {% endfor %}
 {% endblock %}
+      
